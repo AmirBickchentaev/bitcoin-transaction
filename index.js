@@ -202,7 +202,7 @@ function sendTransaction (options) {
 		var change = availableSat - amtSatoshi;
 		var fee = getTransactionSize(ninputs, change > 0 ? 2 : 1)*feePerByte;
 		if (fee > amtSatoshi) throw "BitCoin amount must be larger than the fee. (Ideally it should be MUCH larger)";
-		tx.addOutput(to, amtSatoshi - fee);
+		tx.addOutput(to, amtSatoshi);
 		if (change > 0) tx.addOutput(from, change);
 		var keyPair = bitcoin.ECPair.fromWIF(options.privKeyWIF, bitcoinNetwork);
 		for (var i = 0; i < ninputs; i++) {
